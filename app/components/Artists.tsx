@@ -1,6 +1,8 @@
+'use client'
+
 import useSWR from 'swr'
 import {fetcher} from "@/utils/fetcher"
-import {motion} from "framer-motion"
+import {AnimatePresence, motion} from "framer-motion"
 
 interface ArtistInterface {
     name: string,
@@ -47,6 +49,7 @@ export default function Artists({period}:{period:string}) {
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>
     return (
+        <AnimatePresence>
         <motion.div
             variants={container}
             initial="hidden"
@@ -79,5 +82,6 @@ export default function Artists({period}:{period:string}) {
             })
             }
         </motion.div>
+        </AnimatePresence>
     )
 }

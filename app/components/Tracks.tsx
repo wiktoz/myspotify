@@ -1,6 +1,8 @@
+'use client'
+
 import useSWR from 'swr'
 import {fetcher} from "@/utils/fetcher"
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -28,6 +30,7 @@ export default function Tracks({period}:{period:string}) {
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>
     return (
+    <AnimatePresence>
         <motion.div
             variants={container}
             initial="hidden"
@@ -60,5 +63,6 @@ export default function Tracks({period}:{period:string}) {
             })
             }
         </motion.div>
+    </AnimatePresence>
     )
 }
